@@ -12,7 +12,7 @@ public sealed class UserInterface {
        
     public void Start()
     {
-        int command = default; // 0 is the default value
+        int command = default; 
         
         while (command != 5)
         {
