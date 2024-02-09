@@ -45,7 +45,7 @@ public sealed class UserInterface
                 case 4:
                     if (this.operand == 0)
                     {
-                        Console.WriteLine("Math Error. Please input another calculation.");
+                        Console.WriteLine("[ERR] Math Error. Please input another calculation.");
                     }
                     else
                     {
