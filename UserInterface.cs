@@ -20,36 +20,48 @@ public sealed class UserInterface {
         
         while (command != 5)
         {   
-            getOperands();
+            Console.WriteLine("================= ENTER YOUR CALCULATION ====================");
+            GetOperands();
             GetCommand(out command); 
 
             switch (command)
             {
                 case 1:
-                   //calculator add
+                   calculator.Add(operand);
+                   Console.WriteLine("The answer is " + Math.Round(calculator.GetCurrentValue(), 2));
+
                     break;
                 case 2:
-                    //calculator subtract
+                    calculator.Subtract(operand);
+                   Console.WriteLine("The answer is " + Math.Round(calculator.GetCurrentValue(), 2));
+
                     break;
                 case 3:
-                    //calculator multiply
+                    calculator.Multiply(operand);
+                   Console.WriteLine("The answer is " + Math.Round(calculator.GetCurrentValue(), 2));
+
                     break;
                 case 4:
-                    //calculator divide
+                    if(this.operand == 0) {
+                        Console.WriteLine("Math Error. Please input another calculation.");
+                    } else {
+                        calculator.Divide(operand);
+                        Console.WriteLine("The answer is " + Math.Round(calculator.GetCurrentValue(), 2));
+                    }
+
                     break;
                 case 5:
                     Exit();
                     break;
                 default:
-                    Console.WriteLine("[ERR] Invalid command! Please try again.");
+                    Console.WriteLine("[ERR] Invalid calculation! Please try again.");
                     break;
             }
         }
 
-
     }
 
-    public bool getOperands() {
+    public bool GetOperands() {
         Console.WriteLine("Input your first operand:");
         string? input = Console.ReadLine();
         decimal temp;
@@ -60,7 +72,7 @@ public sealed class UserInterface {
         }
 
         if(input?.Equals("ans") != true) {
-            calculator.setCurrentValue(temp);
+            calculator.SetCurrentValue(temp);
         } 
          
          Console.WriteLine("Input your second operand:");
