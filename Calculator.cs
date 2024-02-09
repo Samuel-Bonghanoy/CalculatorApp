@@ -4,14 +4,32 @@ namespace CalculatorQuiz2
     {
         decimal currentValue;
 
-        public decimal getCurrentValue() {
+        public decimal GetCurrentValue() {
             return currentValue;
         }
 
-         public void setCurrentValue(decimal newVal) {
+         public void SetCurrentValue(decimal newVal) {
             this.currentValue = newVal;
         }
 
-        
+        public void Add(decimal operand) {
+            decimal res = currentValue + operand;
+            SetCurrentValue(res);
+        }
+
+        public void Subtract(decimal operand) {
+            decimal res = currentValue - operand;
+            SetCurrentValue(res);
+        }
+
+        public void Multiply(decimal operand) {
+            decimal res = currentValue * operand;
+            SetCurrentValue(res);
+        }
+
+        public void Divide(decimal operand) {
+            decimal res = currentValue / operand;
+            SetCurrentValue(res);
+        }
     }
 }
