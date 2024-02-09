@@ -11,5 +11,7 @@ namespace CalculatorQuiz2
          public void setCurrentValue(decimal newVal) {
             this.currentValue = newVal;
         }
+
+        
     }
 }
