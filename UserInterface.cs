@@ -2,8 +2,8 @@ using CalculatorQuiz2;
 
 public sealed class UserInterface
 {
-    private static readonly UserInterface instance = new UserInterface();
-    private static Calculator calculator = new Calculator();
+    private static readonly UserInterface instance = new();
+    private static readonly Calculator calculator = new();
     decimal operand;
 
     private UserInterface() { } // Private constructor to prevent external creation
@@ -67,27 +67,46 @@ public sealed class UserInterface
 
     public bool GetOperands()
     {
-        Console.WriteLine("Input your first operand:");
-        string? input = Console.ReadLine();
+        string? input;
         decimal temp;
 
-        while (decimal.TryParse(input, out temp) == false && input?.Equals("ans") != true)
+        do
         {
-            Console.WriteLine("Input is invalid. Please input another number:");
+            Console.Write($"Input your first operand{(calculator.HasPreviousAnswer ? " (type 'ans' for previous result)" : "")}: ");
             input = Console.ReadLine();
-        }
+
+            if (decimal.TryParse(input, out temp))
+            {
+                break; // Exit the loop if input is a valid decimal number
+            }
+            else if (input == "ans")
+            {
+                if (calculator.HasPreviousAnswer)
+                {
+                    break; // Exit the loop if there is a previous answer
+                }
+                else
+                {
+                    Console.WriteLine("[ERR] Input is invalid! No previous answer available.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("[ERR] Input is invalid! Please try again.");
+            }
+        } while (true);
 
         if (input?.Equals("ans") != true)
         {
             calculator.CurrentValue = temp;
         }
 
-        Console.WriteLine("Input your second operand:");
+        Console.Write("Input your second operand: ");
         input = Console.ReadLine();
 
         while (decimal.TryParse(input, out this.operand) == false)
         {
-            Console.WriteLine("Input is invalid. Please input another number:");
+            Console.Write("[ERR] Input is invalid!\nPlease input another number: ");
             input = Console.ReadLine();
         }
 
